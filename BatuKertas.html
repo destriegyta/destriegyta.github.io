@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .subbtn-btn{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+        }
+        .btn-sub {
+            border : none;
+            width: 8rem;
+            height: 2rem;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 50px;
+        }
+
+        .is-subscribe {
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+            }
+
+        body{
+            display: flex ;
+            font-family: Arial;
+            background-color: black;
+            color: white;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            
+                    }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .game {
+            display: flex;
+            gap: 20px;
+            }
+
+        .emoji {
+            border-radius: 50%;
+            justify-content: center;
+            background: none;
+            border: 2px solid orange;
+            width: 100px;
+            height: 100px;
+        }
+
+        .btn-res {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        img{
+            width: auto;
+            height: 50px;  
+            padding: 5px;         
+        }
+
+        .js-move {
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .js-result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .game-bsg {
+    background-color: #222; /* Dark background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .judul-Game {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .js-move, .js-result, .js-score {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-res:hover {
+            background-color: #555;
+        }
+
+        @media (max-width: 414px) {
+        .judul-Game {
+            font-size: 24px;
+        }
+        .emoji {
+            width: 50px;
+            height: 50px;
+        }
+
+        .js-move {
+            padding: 0;
+            font-size: 10px;
+        }
+
+        img{
+            width: auto;
+            height: 25px;  
+            padding: 2px;         
+        }
+                
+    }
+    </style>
+
+</head>
+<body>
+    <section class="game-bsg">
+    <div class="container">
+        <div class="judul">
+            <h1 class="judul-Game">Kertas Batu Gunting</h1>
+        </div>
+        <div class="game">
+        <button onclick="permainan('Batu')" class="emoji"> <img src="Batu-emoji.png" ></button>
+        <button onclick="permainan('Kertas')" class="emoji"><img src="Kertas-emoji.png"></button>
+        <button onclick="permainan('Gunting')" class="emoji"><img src="Gunting-emoji.png"></button>
+        
+        </div>
+
+    <p class="js-move"></p>
+    <p class="js-result"></p>    
+    <p class="js-score"></p>
+        <button onclick="
+            skor.Menang = 0,
+            skor.Kalah = 0,
+            skor.Seri = 0,
+            localStorage.removeItem('skor');
+            updateSkor();
+            " class="btn-res"><img src="resbtn.png" ></button>
+    
+    <div class="subbtn-btn">
+        <p>Anda Menyukai Game ini</p>
+        <button onclick="
+            subscribe()" class="btn-sub">Subscribe 
+        </button>
+
+    </div>
+</section>
+     
+    
+    
+    
+<script>
+   //Alogaritma Permainan
+   //1. Computer memilih langkah secara acak
+   
+   function comp () {
+    const langkahAcakComp = Math.random();
+    
+    let pilihanComp = '';
+
+    if (langkahAcakComp >= 0 && langkahAcakComp < 1 / 3) {pilihanComp = 'Batu'} else if (langkahAcakComp >= 1 / 3 && langkahAcakComp < 2 / 3 ) {pilihanComp = 'Kertas'}
+    else if (langkahAcakComp >= 2 / 3 && langkahAcakComp < 1) {pilihanComp = 'Gunting'}
+
+    return pilihanComp;
+    
+   }
+
+   //Langkah 2. Membandingkan Langkah
+   //Langkah 3a Update Score (Membuat Object)
+   let skor = JSON.parse(localStorage.getItem('skor')) || {
+    Menang: 0,
+    Kalah: 0,
+    Seri: 0
+    }
+
+    let CountSub = 0;
+    function updateCount() {
+        
+    }
+    
+    function updateSkor() {document.querySelector(".js-score").innerHTML = `Menang ${skor.Menang}, Kalah ${skor. Kalah}, Seri ${skor.Seri}`;}
+    
+   function permainan (langkahPemain) {
+    const langkahComp = comp();
+    let hasil = '';
+
+    
+    if (langkahPemain === 'Batu') {if (langkahComp === 'Batu') {hasil = 'Seri';} else if (langkahComp === 'Kertas'){hasil = 'Kalah';} else if (langkahComp === 'Gunting') {hasil = 'Menang';}}
+
+    else if (langkahPemain === 'Kertas') {if (langkahComp === 'Batu') {hasil = 'Menang';} else if (langkahComp === 'Kertas'){hasil = 'Seri';} else if (langkahComp === 'Gunting') {hasil = 'Kalah';}}
+
+    else if (langkahPemain === 'Gunting') {if (langkahComp === 'Batu') {hasil = 'Kalah';} else if (langkahComp === 'Kertas'){hasil = 'Menang';} else if (langkahComp === 'Gunting') {hasil = 'Seri';}}
+
+       //Langkah 3b Update Score (Membuat if statment)
+    if (hasil === 'Menang') {skor.Menang += 1;} else if (hasil === 'Kalah') {skor.Kalah += 1;} else if (hasil === 'Seri') {skor.Seri += 1;}
+
+    localStorage.setItem('skor', JSON.stringify(skor));
+    
+    updateSkor();
+
+    document.querySelector('.js-result').innerHTML = hasil;
+
+    document.querySelector('.js-move').innerHTML = ` Pemain <img src="${langkahPemain}-emoji.png" class="emoji-move"> VS <img src="${langkahComp}-emoji.png" class="emoji-move"> Komputer`;
+    }
+
+    
+    function subscribe() {
+        const btnElement = document.querySelector('.btn-sub');
+       
+        if (btnElement.innerText === 'Subscribe') {
+            btnElement.innerHTML = 'Subscribed';
+            btnElement.classList.add('is-subscribe')
+        } else {btnElement.innerHTML = 'Subscribe';
+                btnElement.classList.remove('is-subscribe')
+        }  
+
+                         
+    }
+
+    /*
+    if (buttonElement.innerText === 'Subscribe') {buttonElement.innerHTML = 'Subscribed';}
+        else  {buttonElement.innerHTML = 'Subscribe'}
+        }
+    */
+</script>
+</body>
+</html>
