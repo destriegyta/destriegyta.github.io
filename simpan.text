@@ -1,0 +1,109 @@
+disini about ke bawah
+
+
+
+
+section ke bawah
+
+
+
+
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px; 
+  
+  color: white;
+  text-align: center;
+   
+
+   .contact-section{
+  background-color: var(--bg-color);
+  color: black;
+}
+  
+
+.contact-section h2{
+  font-size: 7rem;
+  color: var(--text-color);
+  animation: fadeInDown 1s ease-out;
+}
+
+
+.contact-section{
+  background-color: var(--second-bg-color);
+  
+}
+  
+
+.contact-section h2{
+  font-size: 7rem;
+  color: var(--text-color);
+  animation: fadeInDown 1s ease-out;
+}
+.contact-section form{
+  max-width: 600px;
+  margin: 0;
+}
+
+.contact-section input,
+.contact-section textarea{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.contact-section button{
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #Df890b 10%, #ff1d15 100%);
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: 0,3s ease-in-out;
+  color: wheat;
+  border: none;
+  text-wrap: nowrap;
+}
+.contact-section button:hover{
+  background-color: #ff9900;
+  transform: scale(1.05);
+}
+
+footer{
+  padding: 20px;
+  text-align: center;
+  background-color: var(--second-bg-color);
+  color: #ece9e6;  
+  font-size: 1.8rem;  
+}
+footer i{
+  color: var(--text-color); 
+  font-size: 1.8rem;   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
